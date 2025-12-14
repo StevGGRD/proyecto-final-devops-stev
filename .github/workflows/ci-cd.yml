@@ -48,10 +48,12 @@ jobs:
       - name: Build and push backend image
         uses: docker/build-push-action@v5
         with:
-          context: ./backend # <--- CORREGIDO: Contexto es la carpeta ./backend
-          file: ./docker/Dockerfile.backend
+          # CRUCIAL 1: El contexto es la RAIZ (.), ya que el Dockerfile usa rutas como backend/server.js
+          context: . 
+          # CRUCIAL 2: Le decimos la ruta del Dockerfile a usar
+          file: ./docker/Dockerfile.backend 
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/devops-backend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/tu-backend-repo:latest
 
       # 8. Construir y Publicar la Imagen del Frontend
       - name: Build and push frontend image

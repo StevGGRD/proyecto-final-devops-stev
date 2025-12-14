@@ -1,7 +1,18 @@
 FROM node:18-alpine
-WORKDIR /app
+WORKDIR /usr/src/app
+
+# Copia los archivos de configuración de dependencias DESDE la subcarpeta backend/
 COPY backend/package*.json ./
+
+# Instala las dependencias
 RUN npm install
-COPY backend/server.js .
-EXPOSE 5000
-CMD ["node", "server.js"]
+
+# Copia el resto del código fuente DESDE la subcarpeta backend/
+# El error era que Docker no encontraba este archivo, asegúrate que la línea sea correcta:
+COPY backend/server.js . 
+COPY backend/*.js . 
+# O si prefieres copiar todo de backend/:
+# COPY backend/ .
+
+EXPOSE 3000
+CMD [ "npm", "start" ]
