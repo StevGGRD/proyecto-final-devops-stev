@@ -1,25 +1,26 @@
 version: '3.8'
 services:
   backend:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.backend
+    # la imagen subida a Docker Hub
+    image: stevgg/tu-backend-repo:latest 
     ports:
       - "5000:5000"
     environment:
       NODE_ENV: production
+  
   frontend:
-    build:
-      context: ..
-      dockerfile: docker/Dockerfile.frontend
+    #  Usamos la imagen subida a Docker Hub
+    image: stevgg/devops-frontend:latest
     ports:
       - "8080:8080"
     depends_on:
       - backend
+  
   prometheus:
     image: prom/prometheus:latest
     ports:
       - "9090:9090"
+    # Se mantiene la ruta que usaste para Prometheus
     volumes:
       - ../monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
     command:
