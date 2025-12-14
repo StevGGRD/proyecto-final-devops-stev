@@ -59,7 +59,9 @@ jobs:
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
-          context: ./frontend # <--- CORREGIDO: Contexto es la carpeta ./frontend
+          # CRUCIAL: Usamos la RAIZ como contexto.
+          context: . 
+          # CRUCIAL: Apuntamos al Dockerfile DENTRO de la carpeta docker/.
           file: ./docker/Dockerfile.frontend
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/devops-frontend:latest

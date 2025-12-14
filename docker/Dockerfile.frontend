@@ -1,6 +1,11 @@
 FROM node:18-alpine
 WORKDIR /app
 RUN npm install -g http-server
-COPY frontend/ .
+
+# Copiamos los archivos uno a uno para evitar el error de ruta
+COPY frontend/index.html .
+COPY frontend/script.js .
+COPY frontend/style.css .
+
 EXPOSE 8080
 CMD ["http-server", "-p", "8080", "-c-1"]
