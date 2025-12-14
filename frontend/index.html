@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas - DevOps</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Gestor de Tareas</h1>
+            <p class="status" id="status">Estado: Conectando...</p>
+        </header>
+        <main>
+            <div class="form-section">
+                <input type="text" id="taskInput" placeholder="Agregar tarea...">
+                <button onclick="addTask()">Agregar</button>
+            </div>
+            <div class="stats">
+                <span>Total: <strong id="total">0</strong></span>
+                <span>Completadas: <strong id="completed">0</strong></span>
+                <span>Pendientes: <strong id="pending">0</strong></span>
+            </div>
+            <ul id="taskList"></ul>
+            <div class="actions">
+                <button onclick="clearCompleted()">Limpiar</button>
+                <button onclick="loadTasks()">Refrescar</button>
+            </div>
+        </main>
+        <footer>
+            <p>DevOps | API: <span id="apiUrl">localhost:5000</span></p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
