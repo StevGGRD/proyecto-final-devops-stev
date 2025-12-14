@@ -24,8 +24,8 @@ jobs:
         working-directory: ./backend
 
       - name: Run backend tests
-        run: npm test
-        working-directory: ./backend
+        run: npm test # <--- ESTO EJECUTA EL SCRIPT 'test' DEFINIDO EN package.json
+        working-directory: ./proyecto-devops/backend
 
       # Construir y Empujar a Docker Hub
       - name: Login to Docker Hub
